@@ -33,6 +33,7 @@ import android.provider.Settings;
 import android.text.Spanned;
 import android.text.format.Time;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import ch.qos.logback.classic.LoggerContext;

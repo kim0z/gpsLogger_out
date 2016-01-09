@@ -18,6 +18,8 @@
 package com.mendhak.gpslogger.loggers;
 
 import android.location.Location;
+import android.util.Log;
+
 import com.mendhak.gpslogger.common.RejectionHandler;
 import com.mendhak.gpslogger.common.Utilities;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,9 @@ import java.util.Date;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import com.firebase.client.Firebase;
+import org.json.simple.JSONObject;
+
 
 
 public class Gpx10FileLogger implements IFileLogger {
@@ -251,6 +256,32 @@ class Gpx10WriteHandler implements Runnable {
                 .append("\" lon=\"")
                 .append(String.valueOf(loc.getLongitude()))
                 .append("\">");
+
+
+        //Karim Code:
+
+        //send to Firebase
+        Log.d("KARIM::Latitude", String.valueOf(loc.getLatitude()));
+        Log.d("KARIM::Longitude", String.valueOf(loc.getLongitude()));
+
+        JSONObject location = new JSONObject();
+        location.put("latitude", String.valueOf(loc.getLatitude()));
+        location.put("longitude", String.valueOf(loc.getLongitude()));
+        location.put("timestamp", dateTimeString);
+
+
+        Firebase myFirebaseRef = new Firebase("https://luminous-torch-9364.firebaseio.com/");
+        //myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
+        myFirebaseRef.push().setValue(location);
+
+
+
+
+
+        //////////////////////////////////////////////////////////
+
+
+
 
         if (loc.hasAltitude()) {
             track.append("<ele>").append(String.valueOf(loc.getAltitude())).append("</ele>");

@@ -35,6 +35,9 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
+
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
@@ -90,6 +93,12 @@ public class GpsLoggingService extends Service  {
 
     @Override
     public void onCreate() {
+        //Karim code:
+        Firebase.setAndroidContext(this);
+
+
+        /////////////
+
         Utilities.ConfigureLogbackDirectly(getApplicationContext());
         tracer = LoggerFactory.getLogger(GpsLoggingService.class.getSimpleName());
 
