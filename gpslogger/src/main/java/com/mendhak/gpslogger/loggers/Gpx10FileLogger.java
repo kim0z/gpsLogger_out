@@ -276,12 +276,7 @@ class Gpx10WriteHandler implements Runnable {
 
 
 
-
-
         //////////////////////////////////////////////////////////
-
-
-
 
         if (loc.hasAltitude()) {
             track.append("<ele>").append(String.valueOf(loc.getAltitude())).append("</ele>");
