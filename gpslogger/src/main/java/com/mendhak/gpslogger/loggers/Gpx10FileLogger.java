@@ -265,13 +265,25 @@ class Gpx10WriteHandler implements Runnable {
         Log.d("KARIM::Longitude", String.valueOf(loc.getLongitude()));
 
         JSONObject location = new JSONObject();
+        location.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
         location.put("latitude", String.valueOf(loc.getLatitude()));
         location.put("longitude", String.valueOf(loc.getLongitude()));
         location.put("timestamp", dateTimeString);
+        location.put("message", "hello from Aladdin");
 
 
         Firebase myFirebaseRef = new Firebase("https://luminous-torch-9364.firebaseio.com/");
         //myFirebaseRef.child("message").setValue("Do you have data? You'll love Firebase.");
+
+
+
+        //JSONObject user = new JSONObject();
+        //location.put("Alaadin", null);
+
+        //myFirebaseRef.push().setValue(user);
+
+        //Firebase userRef = myFirebaseRef.child("Alaadin");
+
         myFirebaseRef.push().setValue(location);
 
 

@@ -24,11 +24,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.firebase.client.Firebase;
 import com.mendhak.gpslogger.R;
 import com.mendhak.gpslogger.common.AppSettings;
 import com.mendhak.gpslogger.common.EventBusHook;
@@ -36,6 +38,9 @@ import com.mendhak.gpslogger.common.Session;
 import com.mendhak.gpslogger.common.Utilities;
 import com.mendhak.gpslogger.common.events.CommandEvents;
 import com.mendhak.gpslogger.common.events.ServiceEvents;
+
+import org.json.simple.JSONObject;
+
 import de.greenrobot.event.EventBus;
 
 
@@ -49,6 +54,7 @@ public abstract class GenericViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RegisterEventBus();
+
     }
 
     private void RegisterEventBus() {
@@ -93,6 +99,20 @@ public abstract class GenericViewFragment extends Fragment {
     public void RequestToggleLogging(){
 
         if(Session.isStarted()){
+
+            //Karim Code:
+
+            //send to FireBase a flag that this user is active
+            //send to Firebase
+            Log.d("KARIM::User is Active?", "No");
+
+            JSONObject userActive = new JSONObject();
+            userActive.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+            userActive.put("active", "false");
+            Firebase myFirebaseRef1 = new Firebase("https://luminous-torch-9364.firebaseio.com/");
+            myFirebaseRef1.push().setValue(userActive);
+
+
             ToggleLogging();
             return;
         }
@@ -141,6 +161,19 @@ public abstract class GenericViewFragment extends Fragment {
 
         }
         else {
+
+            //Karim Code:
+
+            //send to FireBase a flag that this user is active
+            //send to Firebase
+            Log.d("KARIM::User is Active?", "Yes");
+
+            JSONObject userActive = new JSONObject();
+            userActive.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+            userActive.put("active", "true");
+            Firebase myFirebaseRef2 = new Firebase("https://luminous-torch-9364.firebaseio.com/");
+            myFirebaseRef2.push().setValue(userActive);
+
             ToggleLogging();
         }
     }

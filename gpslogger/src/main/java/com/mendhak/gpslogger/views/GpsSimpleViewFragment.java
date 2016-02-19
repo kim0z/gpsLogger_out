@@ -22,6 +22,7 @@ import android.graphics.*;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,12 +33,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.dd.processbutton.iml.ActionProcessButton;
+import com.firebase.client.Firebase;
 import com.mendhak.gpslogger.R;
 import com.mendhak.gpslogger.common.AppSettings;
 import com.mendhak.gpslogger.common.EventBusHook;
 import com.mendhak.gpslogger.common.Session;
 import com.mendhak.gpslogger.common.Utilities;
 import com.mendhak.gpslogger.common.events.ServiceEvents;
+
+import org.json.simple.JSONObject;
 import org.slf4j.LoggerFactory;
 import java.text.NumberFormat;
 
@@ -69,12 +73,12 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: Inflates the simple layout
+
 
         rootView = inflater.inflate(R.layout.fragment_simple_view, container, false);
 
@@ -100,6 +104,8 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
 
         if (getActivity() != null) {
             this.context = getActivity().getApplicationContext();
+
+
 
         }
 
@@ -181,7 +187,7 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
         txtFilename.setText(Html.fromHtml("<em>" + AppSettings.getGpsLoggerFolder() + "/<strong><br />" + Session.getCurrentFileName() + "</strong></em>"));
 
         Utilities.SetFileExplorerLink(txtFilename,
-                Html.fromHtml("<em><font color='blue'><u>" + AppSettings.getGpsLoggerFolder() + "</u></font>" + "/<strong><br />" + Session.getCurrentFileName() + "</strong></em>" ),
+                Html.fromHtml("<em><font color='blue'><u>" + AppSettings.getGpsLoggerFolder() + "</u></font>" + "/<strong><br />" + Session.getCurrentFileName() + "</strong></em>"),
                 AppSettings.getGpsLoggerFolder(),
                 getActivity().getApplicationContext());
 
@@ -252,9 +258,9 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
 
     }
 
+
     @Override
     public void onStart() {
-
         setActionButtonStop();
         super.onStart();
     }
