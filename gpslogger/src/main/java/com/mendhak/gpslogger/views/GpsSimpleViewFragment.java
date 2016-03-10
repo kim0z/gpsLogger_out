@@ -104,11 +104,12 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
 
         if (getActivity() != null) {
             this.context = getActivity().getApplicationContext();
-
-
-
         }
 
+        //Karim Code
+        EditText email_editText = (EditText)rootView.findViewById(R.id.email_firebase);
+        AppSettings.setEmail(email_editText.getText().toString());
+        //Karim Code End
 
         return rootView;
     }

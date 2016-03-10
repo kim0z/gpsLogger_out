@@ -19,7 +19,11 @@ package com.mendhak.gpslogger.loggers;
 
 import android.location.Location;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
+import com.mendhak.gpslogger.R;
+import com.mendhak.gpslogger.common.AppSettings;
 import com.mendhak.gpslogger.common.RejectionHandler;
 import com.mendhak.gpslogger.common.Utilities;
 import org.slf4j.LoggerFactory;
@@ -48,6 +52,7 @@ public class Gpx10FileLogger implements IFileLogger {
     private final boolean addNewTrackSegment;
     private final int satelliteCount;
     protected final String name = "GPX";
+
 
     Gpx10FileLogger(File gpxFile, boolean addNewTrackSegment, int satelliteCount) {
         this.gpxFile = gpxFile;
@@ -93,6 +98,7 @@ class Gpx10AnnotateHandler implements Runnable {
     File gpxFile;
     Location loc;
     String dateTimeString;
+
 
     public Gpx10AnnotateHandler(String description, File gpxFile, Location loc, String dateTimeString) {
         this.description = description;
@@ -188,6 +194,10 @@ class Gpx10WriteHandler implements Runnable {
     private boolean addNewTrackSegment;
     private int satelliteCount;
 
+    //Karim
+    private View rootView;
+    private EditText email;
+
     public Gpx10WriteHandler(String dateTimeString, File gpxFile, Location loc, boolean addNewTrackSegment, int satelliteCount) {
         this.dateTimeString = dateTimeString;
         this.addNewTrackSegment = addNewTrackSegment;
@@ -265,11 +275,15 @@ class Gpx10WriteHandler implements Runnable {
         Log.d("KARIM::Longitude", String.valueOf(loc.getLongitude()));
 
         JSONObject location = new JSONObject();
-        location.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+        //location.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+        location.put("email", AppSettings.getEmail());
         location.put("latitude", String.valueOf(loc.getLatitude()));
         location.put("longitude", String.valueOf(loc.getLongitude()));
         location.put("timestamp", dateTimeString);
         location.put("message", "hello from Aladdin");
+
+        //rootView = inflater.inflate(R.layout.fragment_simple_view, container, false);
+        //email = (EditText)rootView.findViewById(R.id.email_firebase);
 
 
         Firebase myFirebaseRef = new Firebase("https://luminous-torch-9364.firebaseio.com/");

@@ -107,7 +107,7 @@ public abstract class GenericViewFragment extends Fragment {
             Log.d("KARIM::User is Active?", "No");
 
             JSONObject userActive = new JSONObject();
-            userActive.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+            userActive.put("email", AppSettings.getEmail());
             userActive.put("active", "false");
             Firebase myFirebaseRef1 = new Firebase("https://luminous-torch-9364.firebaseio.com/");
             myFirebaseRef1.push().setValue(userActive);
@@ -169,7 +169,7 @@ public abstract class GenericViewFragment extends Fragment {
             Log.d("KARIM::User is Active?", "Yes");
 
             JSONObject userActive = new JSONObject();
-            userActive.put("email", "aladdin_dejvjmt_tracker@tfbnw.net");
+            userActive.put("email", AppSettings.getEmail());
             userActive.put("active", "true");
             Firebase myFirebaseRef2 = new Firebase("https://luminous-torch-9364.firebaseio.com/");
             myFirebaseRef2.push().setValue(userActive);

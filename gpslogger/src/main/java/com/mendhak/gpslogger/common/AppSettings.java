@@ -138,6 +138,35 @@ public class AppSettings extends Application {
     private static int subtractAltitudeOffset;
 
 
+
+    //Karim
+    private static String email;
+    private static String message;
+
+    public static String getMessage() {
+        return message;
+    }
+
+    public static void setMessage(String message) {
+        AppSettings.message = message;
+    }
+
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        AppSettings.email = email;
+    }
+
+    //Karim code end
+
+
+
+
+
+
     public static boolean isOsmAutoSendEnabled() {
         return osmAutoSendEnabled;
     }
