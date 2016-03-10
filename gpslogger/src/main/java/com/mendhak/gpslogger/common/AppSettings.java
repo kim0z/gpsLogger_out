@@ -140,8 +140,8 @@ public class AppSettings extends Application {
 
 
     //Karim
-    private static String email;
-    private static String message;
+    private static String email = "";
+    private static String message = "";
 
     public static String getMessage() {
         return message;
