@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.firebase.client.Firebase;
 import com.mendhak.gpslogger.R;
@@ -107,6 +108,17 @@ public class GpsSimpleViewFragment extends GenericViewFragment implements View.O
         }
 
         //Karim Code
+
+        Button button_firebase = (Button)rootView.findViewById(R.id.button_firebase);
+        button_firebase.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // your handler code here
+                EditText message_editText = (EditText)rootView.findViewById(R.id.message_firebase);
+                AppSettings.setMessage(message_editText.getText().toString());
+            }
+        });
+
+
         EditText email_editText = (EditText)rootView.findViewById(R.id.email_firebase);
         AppSettings.setEmail(email_editText.getText().toString());
         //Karim Code End

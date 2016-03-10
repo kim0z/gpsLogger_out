@@ -280,7 +280,10 @@ class Gpx10WriteHandler implements Runnable {
         location.put("latitude", String.valueOf(loc.getLatitude()));
         location.put("longitude", String.valueOf(loc.getLongitude()));
         location.put("timestamp", dateTimeString);
-        location.put("message", "hello from Aladdin");
+        if(AppSettings.getMessage() != null || AppSettings.getMessage() != "") {
+            location.put("message", AppSettings.getMessage());
+            AppSettings.setMessage("");
+        }
 
         //rootView = inflater.inflate(R.layout.fragment_simple_view, container, false);
         //email = (EditText)rootView.findViewById(R.id.email_firebase);

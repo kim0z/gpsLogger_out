@@ -316,7 +316,7 @@
                         android:layout_width="29dp"
                         android:layout_height="30dp"
                         android:text="New Button"
-                        android:id="@+id/button"
+                        android:id="@+id/button_firebase"
                         android:layout_row="6"
                         android:layout_column="2"
                         android:layout_gravity="right" />
